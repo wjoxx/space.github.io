@@ -27,6 +27,36 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.zIndex = '1';
         });
     });
+    document.addEventListener('DOMContentLoaded', function() {
+    // Дополнительные эффекты для переливающегося заголовка
+    const mainTitle = document.querySelector('.title h1');
+    
+    // Периодическое изменение скорости анимации
+    setInterval(() => {
+        const speeds = [6, 8, 10, 12];
+        const randomSpeed = speeds[Math.floor(Math.random() * speeds.length)];
+        mainTitle.style.animationDuration = `${randomSpeed}s`;
+        
+        // Случайное усиление свечения
+        if (Math.random() > 0.5) {
+            mainTitle.style.textShadow = '0 0 20px currentColor';
+            setTimeout(() => {
+                mainTitle.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.3)';
+            }, 500);
+        }
+    }, 5000);
+
+    // Эффект при наведении на заголовок
+    mainTitle.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05)';
+        this.style.animationDuration = '4s'; // Ускоряем при наведении
+    });
+    
+    mainTitle.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.animationDuration = '8s'; // Возвращаем нормальную скорость
+    });
+});
 
     // Параллакс эффект для фоновых элементов
     document.addEventListener('mousemove', (e) => {
@@ -77,3 +107,4 @@ function createStars() {
 
 // Запускаем создание звезд после загрузки
 window.addEventListener('load', createStars);
+
