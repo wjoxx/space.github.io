@@ -90,8 +90,8 @@ body::after {
   animation: rotate 20s linear infinite;
 }
 .img_1 {
-width:60
-height:60
+width:60;
+height:60;
 }
 
 @keyframes float {
@@ -398,6 +398,7 @@ height:60
     overflow-x: auto;
   }
 }
+
 
 
 
