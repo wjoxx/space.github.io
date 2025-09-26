@@ -89,6 +89,7 @@ body::after {
   left: 10%;
   animation: rotate 20s linear infinite;
 }
+.img.
 
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -394,6 +395,7 @@ body::after {
     overflow-x: auto;
   }
 }
+
 
 
 
