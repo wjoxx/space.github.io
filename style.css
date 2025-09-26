@@ -100,10 +100,6 @@ body::after {
   0% { transform: rotate(45deg); }
   100% { transform: rotate(405deg); }
 }
-.img_1 {
-width:60 px;
-height:60 px;
-}
 
 .container {
   position: relative;
@@ -399,6 +395,7 @@ height:60 px;
     overflow-x: auto;
   }
 }
+
 
 
 
