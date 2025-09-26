@@ -54,12 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(() => {
         document.querySelector('.table-container').scrollTop = 0;
     }, 100);
-    
-    // Обновляем счетчик в футере
-    const objectCount = rows.length;
-    document.querySelector('footer p').textContent = 
-        `Каталог космических объектов Солнечной системы • Всего объектов: ${objectCount}`;
-    
-    console.log(`Таблица загружена. Всего объектов: ${objectCount}`);
 });
+
 
