@@ -118,29 +118,13 @@ body::after {
   width: 100%;
 }
 
-.title   h1 {
-    font-size: 3em;
-    font-weight: bold;
-    background: linear-gradient(270deg, #ff0000, #00ff00, #0000ff, #ff0000);
-    background-size: 600% 600%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-    animation: gradientAnimation 10s ease infinite;
-  }
-
-  @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+.title h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 3rem;
+  margin-bottom: 15px;
+  letter-spacing: 3px;
+  position: relative;
   
   background: linear-gradient(135deg, 
     #4fc3f7 0%, 
@@ -247,114 +231,70 @@ body::after {
   font-weight: 300;
 }
 
-.slider {
+
+.table-container {
   width: 100%;
-  background: rgba(10, 15, 35, 0.8);
-  border-radius: 15px;
-  border: 1px solid rgba(79, 195, 247, 0.3);
-  padding: 20px;
-  margin: 30px 0;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin: 40px 0;
+  background: rgba(10, 15, 35, 0.9);
+  border: 2px solid #00a2ff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-.cosmic-table {
+.bordered-table {
   width: 100%;
   border-collapse: collapse;
+  font-family: 'Courier New', monospace;
   font-size: 14px;
-  color: #e0f7fa;
 }
 
-.cosmic-table th {
-  background: linear-gradient(135deg, rgba(30, 70, 200, 0.8), rgba(120, 25, 140, 0.8));
-  color: #fff;
-  padding: 20px 15px;
+.bordered-table th {
+  background: linear-gradient(135deg, #001a33, #003366);
+  color: #00f0ff;
+  padding: 15px 12px;
   text-align: left;
-  font-weight: 600;
+  font-weight: bold;
+  border: 1px solid #0044aa;
   text-transform: uppercase;
   letter-spacing: 1px;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  position: relative;
-  overflow: hidden;
+  text-shadow: 0 0 5px #00a2ff;
 }
 
-.cosmic-table th::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: headerShine 3s infinite;
-}
-
-@keyframes headerShine {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-.cosmic-table td {
-  padding: 18px 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(20, 25, 50, 0.5);
+.bordered-table td {
+  padding: 12px 12px;
+  border: 1px solid #003366;
+  background: rgba(0, 20, 40, 0.8);
+  color: #e0f7fa;
   transition: all 0.3s ease;
-  position: relative;
 }
 
-.cosmic-table tbody tr {
-  animation: rowAppear 0.6s ease-out forwards;
-  opacity: 0;
-  transform: translateX(-20px);
+.bordered-table tr:nth-child(even) td {
+  background: rgba(0, 25, 50, 0.8);
 }
 
-@keyframes rowAppear {
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.bordered-table tr:hover td {
+  background: rgba(0, 40, 80, 0.9);
+  transform: translateX(2px);
+  box-shadow: 0 2px 10px rgba(0, 162, 255, 0.3);
 }
 
-.cosmic-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
-.cosmic-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
-.cosmic-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
-/* ... и так далее для всех строк */
-
-.cosmic-table tbody tr:hover td {
-  background: rgba(30, 40, 80, 0.7);
-  transform: translateX(5px);
-}
-
-.cosmic-table tbody tr:nth-child(even) td {
-  background: rgba(15, 20, 40, 0.5);
-}
-
-.cosmic-table tbody tr:nth-child(even):hover td {
-  background: rgba(25, 35, 70, 0.7);
-}
-
-.cosmic-table td:first-child {
-  color: #64ffda;
-  font-weight: bold;
-  text-align: center;
-}
-
-.cosmic-table td:nth-child(2) {
-  color: #4fc3f7;
+.bordered-table td:first-child {
+  color: #00f0ff;
   font-weight: 600;
 }
 
-.cosmic-table td:nth-child(3) {
-  color: #82b1ff;
+.bordered-table td:nth-child(2) {
+  color: #00a2ff;
 }
 
-.cosmic-table td:nth-child(4) {
-  color: #b388ff;
+.bordered-table td:nth-child(3) {
+  color: #66ccff;
   font-style: italic;
 }
 
-.cosmic-table td:last-child {
-  color: #ff4081;
+.bordered-table td:last-child {
+  color: #00f0ff;
   font-weight: bold;
   text-align: center;
   font-family: 'Courier New', monospace;
@@ -392,8 +332,13 @@ body::after {
     max-width: 300px;
   }
   
-  .cosmic-table {
+  .bordered-table {
     font-size: 12px;
+  }
+  
+  .bordered-table th,
+  .bordered-table td {
+    padding: 8px 6px;
   }
   
   .footer-info {
@@ -401,6 +346,11 @@ body::after {
     gap: 10px;
     text-align: center;
   }
+  
+  .table-container {
+    overflow-x: auto;
+  }
 }
+
 
 
