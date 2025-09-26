@@ -118,14 +118,7 @@ body::after {
   width: 100%;
 }
 
-.title h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  font-size: 3rem;
-  margin-bottom: 15px;
-  letter-spacing: 3px;
-  position: relative;
-  h1 {
+.title   h1 {
     font-size: 3em;
     font-weight: bold;
     background: linear-gradient(270deg, #ff0000, #00ff00, #0000ff, #ff0000);
@@ -409,4 +402,5 @@ body::after {
     text-align: center;
   }
 }
+
 
