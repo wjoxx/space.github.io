@@ -1,95 +1,72 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Анимация появления элементов
     const animateElements = () => {
-        const elements = document.querySelectorAll('.image-block, .slider');
+        const elements = document.querySelectorAll('.image-block, .table-container');
         elements.forEach((el, index) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            
             setTimeout(() => {
+                el.style.transition = 'all 0.6s ease';
                 el.style.opacity = '1';
                 el.style.transform = 'translateY(0)';
             }, index * 200);
         });
     };
 
-    // Инициализация анимаций
-    setTimeout(animateElements, 500);
+    // Специальная анимация для ГЛАВНОГО заголовка
+    const mainTitle = document.querySelector('.title h1');
+    
+    // Усиливаем анимацию заголовка
+    setInterval(() => {
+        // Случайное изменение скорости
+        const randomSpeed = (Math.random() * 2 + 2).toFixed(1);
+        mainTitle.style.animationDuration = `${randomSpeed}s, ${randomSpeed * 0.6}s`;
+        
+        // Случайное мерцание
+        if (Math.random() > 0.7) {
+            mainTitle.style.filter = 'brightness(1.5)';
+            setTimeout(() => {
+                mainTitle.style.filter = 'brightness(1)';
+            }, 200);
+        }
+    }, 3000);
+
+    // Эффекты при наведении на картинки
+    const imageBlocks = document.querySelectorAll('.image-block');
+    
+    imageBlocks.forEach(block => {
+        block.addEventListener('mouseenter', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                img.style.transform = 'scale(1.1)';
+            }
+        });
+        
+        block.addEventListener('mouseleave', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                img.style.transform = 'scale(1.05)';
+            }
+        });
+    });
 
     // Эффекты при наведении на таблицу
-    const tableRows = document.querySelectorAll('.cosmic-table tbody tr');
+    const tableRows = document.querySelectorAll('.bordered-table tbody tr');
     
     tableRows.forEach(row => {
         row.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
-            this.style.zIndex = '10';
-            this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
+            this.style.transform = 'scale(1.01)';
         });
         
         row.addEventListener('mouseleave', function() {
             this.style.transform = 'scale(1)';
-            this.style.zIndex = '1';
-            this.style.boxShadow = 'none';
         });
     });
 
-    // Автоматическое обновление счетчика
-    const updateCounter = () => {
-        const countElement = document.querySelector('.object-count');
-        let count = 50;
-        
-        setInterval(() => {
-            count++;
-            countElement.textContent = `ОБЪЕКТОВ: ${count}`;
-        }, 5000);
-    };
-
-    updateCounter();
-
-    // Параллакс эффект для фоновых элементов
-    document.addEventListener('mousemove', (e) => {
-        const moveX = (e.clientX - window.innerWidth / 2) / 50;
-        const moveY = (e.clientY - window.innerHeight / 2) / 50;
-        
-        document.querySelector('.circle').style.transform = 
-            `translate(${moveX}px, ${moveY}px)`;
-        document.querySelector('.circle-2').style.transform = 
-            `translate(${-moveX * 0.7}px, ${-moveY * 0.7}px)`;
-    });
+    // Инициализация анимаций
+    setTimeout(animateElements, 500);
 
     console.log('Космическая карта объектов загружена! 🚀');
 });
-
-// Добавляем динамическое мерцание звезд
-function createStars() {
-    const starsContainer = document.createElement('div');
-    starsContainer.className = 'dynamic-stars';
-    starsContainer.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-    `;
-    
-    for (let i = 0; i < 100; i++) {
-        const star = document.createElement('div');
-        star.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 3}px;
-            height: ${Math.random() * 3}px;
-            background: white;
-            border-radius: 50%;
-            top: ${Math.random() * 100}%;
-            left: ${Math.random() * 100}%;
-            opacity: ${Math.random() * 0.7 + 0.3};
-            animation: twinkle ${Math.random() * 5 + 3}s infinite alternate;
-        `;
-        starsContainer.appendChild(star);
-    }
-    
-    document.body.appendChild(starsContainer);
-}
-
-// Запускаем создание звезд после загрузки
-window.addEventListener('load', createStars);
 
