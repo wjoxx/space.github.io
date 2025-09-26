@@ -118,32 +118,75 @@ body::after {
   width: 100%;
 }
 
+/* УПРОЩЕННЫЙ ПЛАВНЫЙ ПЕРЕЛИВ */
 .title h1 {
   font-family: 'Orbitron', sans-serif;
   font-weight: 900;
-  font-size: 3rem;
-  margin-bottom: 15px;
-  letter-spacing: 3px;
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  letter-spacing: 4px;
   position: relative;
+  text-transform: uppercase;
+  text-align: center;
   
-  background: linear-gradient(135deg, 
-    #4fc3f7 0%, 
-    #64ffda 25%, 
-    #82b1ff 50%, 
-    #d500f9 75%, 
-    #ff4081 100%);
+  /* Плавный градиент через все цвета радуги */
+  background: linear-gradient(
+    -45deg,
+    #FF0000, #FF7F00, #FFFF00, #00FF00,
+    #0000FF, #4B0082, #8B00FF, #FF0000
+  );
   
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  background-size: 400% 400%;
   
-  text-shadow: 
-    0 0 10px rgba(79, 195, 247, 0.3),
-    0 0 20px rgba(100, 255, 218, 0.2),
-    0 0 30px rgba(130, 177, 255, 0.1);
+  /* Единое неоновое свечение */
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
   
-  background-size: 200% 200%;
-  animation: cosmicFlow 8s ease infinite;
+  /* Очень плавная анимация */
+  animation: smoothRainbow 12s ease-in-out infinite;
+}
+
+@keyframes smoothRainbow {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 50% 50%;
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    background-position: 50% 50%;
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+.title h1::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 20%;
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(90deg, #FF0000, #0000FF, #FF0000);
+  background-size: 300% 100%;
+  border-radius: 2px;
+  animation: smoothUnderline 8s ease-in-out infinite;
+}
+
+@keyframes smoothUnderline {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 300% 0%; }
 }
 
 .title h1::before {
@@ -351,6 +394,7 @@ body::after {
     overflow-x: auto;
   }
 }
+
 
 
 
