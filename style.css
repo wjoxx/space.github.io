@@ -5,11 +5,46 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 50%, #2d1b69 100%);
-  color: #333;
+  font-family: 'Courier New', monospace;
+  background: #0a0a16;
+  color: #00f0ff;
   min-height: 100vh;
-  line-height: 1.4;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Анимированные звезды на фоне */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: -1;
+}
+
+.stars::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #00f0ff, transparent),
+    radial-gradient(2px 2px at 40px 70px, #00a2ff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+    radial-gradient(1px 1px at 130px 80px, #00f0ff, transparent),
+    radial-gradient(2px 2px at 160px 30px, #00a2ff, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: starsMove 50s linear infinite;
+}
+
+@keyframes starsMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100px); }
 }
 
 .container {
@@ -21,189 +56,251 @@ body {
   flex-direction: column;
 }
 
+/* Заголовок */
 header {
   text-align: center;
   margin-bottom: 30px;
   padding: 30px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 15, 30, 0.8);
+  border: 1px solid #00a2ff;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.1), transparent);
+  animation: headerGlow 3s infinite;
+}
+
+@keyframes headerGlow {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 
 header h1 {
-  font-size: 2.8em;
-  color: #2c3e50;
+  font-size: 2.5em;
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00a2ff;
+  letter-spacing: 3px;
   margin-bottom: 10px;
-  font-weight: 300;
+  font-weight: 700;
 }
 
-main {
-  flex: 1;
+.header-subtitle {
+  color: #00a2ff;
+  font-size: 1.1em;
+  letter-spacing: 1px;
 }
 
-.table-container {
-  background: white;
-  border-radius: 10px;
+/* Таблица */
+.table-wrapper {
+  background: rgba(0, 10, 20, 0.9);
+  border: 1px solid #0066ff;
+  border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+  flex: 1;
   margin-bottom: 20px;
   max-height: calc(100vh - 200px);
   overflow-y: auto;
 }
 
-.space-table {
+.cosmic-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
 }
 
-.space-table th {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  color: white;
-  padding: 18px 15px;
+/* Заголовки таблицы */
+.cosmic-table th {
+  background: linear-gradient(135deg, #001a33 0%, #003366 100%);
+  color: #00f0ff;
+  padding: 20px 15px;
   text-align: left;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-right: 1px solid #0044aa;
   position: sticky;
   top: 0;
   z-index: 10;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  text-shadow: 0 0 5px #00a2ff;
 }
 
-.space-table th:last-child {
+.cosmic-table th:last-child {
   border-right: none;
 }
 
-.space-table td {
-  padding: 15px;
-  border-bottom: 1px solid #ecf0f1;
-  vertical-align: top;
-  border-right: 1px solid #ecf0f1;
+/* Ячейки таблицы */
+.cosmic-table td {
+  padding: 18px 15px;
+  border-bottom: 1px solid #003366;
+  border-right: 1px solid #003366;
+  background: rgba(0, 20, 40, 0.7);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.space-table td:last-child {
+.cosmic-table td:last-child {
   border-right: none;
 }
 
-.space-table tbody tr {
-  transition: all 0.2s ease;
+.cosmic-table td::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 255, 0.1), transparent);
+  transition: left 0.5s ease;
 }
 
-.space-table tbody tr:hover {
-  background-color: #f8f9fa;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Анимации строк */
+.cosmic-table tbody tr {
+  animation: rowAppear 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateX(-20px);
 }
 
-.space-table tbody tr:nth-child(even) {
-  background-color: #fafbfc;
+@keyframes rowAppear {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
-.space-table tbody tr:nth-child(even):hover {
-  background-color: #f1f3f4;
+/* Задержки для последовательного появления */
+.cosmic-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+.cosmic-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+.cosmic-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+.cosmic-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+.cosmic-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+.cosmic-table tbody tr:nth-child(6) { animation-delay: 0.6s; }
+.cosmic-table tbody tr:nth-child(7) { animation-delay: 0.7s; }
+.cosmic-table tbody tr:nth-child(8) { animation-delay: 0.8s; }
+.cosmic-table tbody tr:nth-child(9) { animation-delay: 0.9s; }
+.cosmic-table tbody tr:nth-child(10) { animation-delay: 1.0s; }
+
+/* Эффекты при наведении */
+.cosmic-table tbody tr:hover td {
+  background: rgba(0, 40, 80, 0.8);
+  transform: translateX(5px);
+  box-shadow: 0 0 20px rgba(0, 162, 255, 0.3);
 }
 
-/* Стили для разных типов объектов */
-.space-table td:nth-child(2) {
+.cosmic-table tbody tr:hover td::before {
+  left: 100%;
+}
+
+.cosmic-table tbody tr:hover td:first-child {
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00a2ff;
+}
+
+/* Чередование цветов строк */
+.cosmic-table tbody tr:nth-child(even) td {
+  background: rgba(0, 15, 30, 0.7);
+}
+
+.cosmic-table tbody tr:nth-child(even):hover td {
+  background: rgba(0, 35, 70, 0.8);
+}
+
+/* Стили для разных колонок */
+.cosmic-table td:first-child {
+  color: #00f0ff;
   font-weight: 600;
 }
 
-.space-table td:nth-child(2):contains("Планета") {
-  color: #e74c3c;
+.cosmic-table td:nth-child(2) {
+  color: #00a2ff;
 }
 
-.space-table td:nth-child(2):contains("Звезда") {
-  color: #f39c12;
-}
-
-.space-table td:nth-child(2):contains("Спутник") {
-  color: #3498db;
-}
-
-.space-table td:nth-child(2):contains("Карликовая") {
-  color: #9b59b6;
-}
-
-.space-table td:first-child {
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-.space-table td:last-child {
-  font-family: 'Courier New', monospace;
-  font-weight: 600;
-  text-align: center;
-  color: #7f8c8d;
-}
-
-.space-table td:nth-child(3) {
-  color: #5d6d7e;
+.cosmic-table td:nth-child(3) {
+  color: #66ccff;
   font-style: italic;
 }
 
-footer {
+.cosmic-table td:last-child {
+  color: #00f0ff;
+  font-weight: 700;
   text-align: center;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  margin-top: auto;
+  font-family: 'Courier New', monospace;
 }
 
-footer p {
-  color: #7f8c8d;
+/* Футер */
+footer {
+  background: rgba(0, 15, 30, 0.8);
+  border: 1px solid #00a2ff;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #00a2ff;
   font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.object-count, .last-update {
+  padding: 5px 15px;
+  background: rgba(0, 40, 80, 0.5);
+  border-radius: 3px;
 }
 
 /* Стили для скроллбара */
-.table-container::-webkit-scrollbar {
+.table-wrapper::-webkit-scrollbar {
   width: 8px;
 }
 
-.table-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.table-wrapper::-webkit-scrollbar-track {
+  background: #001a33;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #00a2ff, #00f0ff);
   border-radius: 4px;
 }
 
-.table-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #3498db, #2980b9);
-  border-radius: 4px;
-}
-
-.table-container::-webkit-scrollbar-thumb:hover {
-  background: #2980b9;
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #00f0ff, #00a2ff);
 }
 
 /* Адаптивность */
-@media (max-width: 1200px) {
-  .container {
-    padding: 15px;
-  }
-  
-  .space-table {
-    font-size: 13px;
-  }
-}
-
 @media (max-width: 768px) {
   .container {
     padding: 10px;
   }
   
   header h1 {
-    font-size: 2em;
+    font-size: 1.8em;
+    letter-spacing: 2px;
   }
   
-  .space-table {
+  .cosmic-table {
     font-size: 12px;
   }
   
-  .space-table th,
-  .space-table td {
-    padding: 10px 8px;
+  .cosmic-table th,
+  .cosmic-table td {
+    padding: 12px 8px;
   }
   
-  .table-container {
-    max-height: calc(100vh - 150px);
+  .footer-info {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
   }
 }
 
@@ -213,43 +310,37 @@ footer p {
   }
   
   header h1 {
-    font-size: 1.6em;
+    font-size: 1.5em;
   }
   
-  .space-table {
+  .cosmic-table {
     font-size: 11px;
   }
   
-  .space-table th,
-  .space-table td {
-    padding: 8px 6px;
+  .cosmic-table th,
+  .cosmic-table td {
+    padding: 10px 6px;
   }
 }
 
-/* Анимация появления строк */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Мигающие элементы */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
-.space-table tbody tr {
-  animation: fadeIn 0.3s ease-out;
+.cosmic-table td:last-child {
+  animation: blink 2s infinite;
 }
 
-.space-table tbody tr:nth-child(1) { animation-delay: 0.05s; }
-.space-table tbody tr:nth-child(2) { animation-delay: 0.1s; }
-.space-table tbody tr:nth-child(3) { animation-delay: 0.15s; }
-.space-table tbody tr:nth-child(4) { animation-delay: 0.2s; }
-.space-table tbody tr:nth-child(5) { animation-delay: 0.25s; }
-.space-table tbody tr:nth-child(6) { animation-delay: 0.3s; }
-.space-table tbody tr:nth-child(7) { animation-delay: 0.35s; }
-.space-table tbody tr:nth-child(8) { animation-delay: 0.4s; }
-.space-table tbody tr:nth-child(9) { animation-delay: 0.45s; }
-.space-table tbody tr:nth-child(10) { animation-delay: 0.5s; }
+/* Пульсирующая рамка */
+.table-wrapper {
+  animation: pulseBorder 4s infinite;
+}
+
+@keyframes pulseBorder {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 162, 255, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 242, 255, 0.5); }
+}
+
 
