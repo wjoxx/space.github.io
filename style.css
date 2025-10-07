@@ -442,6 +442,18 @@ h1::after {
   .bordered-table {
     font-size: 12px;
   }
+  .images-container {
+  display: flex;
+  gap: 10px; /* расстояние между картинками */
+  justify-content: center; /* выравнивание по центру */
+  align-items: center; /* выравнивание по вертикали */
+  flex-wrap: wrap; /* перенос на новую строку если не помещаются */
+}
+
+.images-container img {
+  max-width: 100%;
+  height: auto;
+}
   
   .bordered-table th,
   .bordered-table td {
@@ -458,6 +470,7 @@ h1::after {
     overflow-x: auto;
   }
 }
+
 
 
 
