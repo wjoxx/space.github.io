@@ -62,17 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 5000);
 
-        // Эффект при наведении на заголовок
-        mainTitle.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-            this.style.animationDuration = '4s'; // Ускоряем при наведении
-        });
         
-        mainTitle.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-            this.style.animationDuration = '8s'; // Возвращаем нормальную скорость
-        });
-    }
 
     // Параллакс эффект для фоновых элементов
     document.addEventListener('mousemove', (e) => {
@@ -145,4 +135,5 @@ function createStars() {
 
 // Запускаем создание звезд после загрузки
 window.addEventListener('load', createStars);
+
 
