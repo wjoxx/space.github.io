@@ -223,51 +223,6 @@ body::after {
 }
 
 
-
-/* ДОБАВИТЬ ВЫСОТУ СКРОЛЛБАРА */
-.images-container.horizontal::-webkit-scrollbar {
-  height: 12px; /* ← ЭТУ СТРОКУ ДОБАВИТЬ */
-}
-
-.images-container.horizontal::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.images-container.horizontal::-webkit-scrollbar-thumb {
-  background: rgba(79, 195, 247, 0.5);
-  border-radius: 4px;
-}
-
-.images-container.horizontal::-webkit-scrollbar-thumb:hover {
-  background: rgba(79, 195, 247, 0.7);
-}
-
-/* Анимация при наведении */
-.images-container.horizontal img:hover {
-  transform: translateY(-10px) !important;
-}
-
-
-.images-container.horizontal::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.images-container.horizontal::-webkit-scrollbar-thumb {
-  background: rgba(79, 195, 247, 0.5);
-  border-radius: 4px;
-
-}
-
-.images-container.horizontal::-webkit-scrollbar-thumb:hover {
-  background: rgba(79, 195, 247, 0.7);
-
-}
-
-
-
-
 /* Стили для таблицы */
 .table-container {
   width: 100%;
@@ -417,6 +372,7 @@ body::after {
     font-size: 1.8rem;
   }
 }
+
 
 
 
