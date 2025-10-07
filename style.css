@@ -229,12 +229,6 @@ body::after {
 }
 
 
-
-//* Стиль для горизонтальной прокрутки */
-//.images-container.vertical::-webkit-scrollbar {
- // height: 8px;
-//}
-
 .images-container.vertical::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 4px;
@@ -398,6 +392,7 @@ body::after {
     font-size: 1.8rem;
   }
 }
+
 
 
 
