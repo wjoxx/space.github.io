@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const animateElements = () => {
-        const elements = document.querySelectorAll('.image-block, .table-container, .images-container.vertical img');
+        const elements = document.querySelectorAll('.image-block, .table-container, .images-container.horizontal img');
         elements.forEach((el, index) => {
             setTimeout(() => {
                 el.style.opacity = '1';
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setTimeout(animateElements, 500);
 
     // Эффекты при наведении на картинки
-    const images = document.querySelectorAll('.images-container.vertical img');
+    const images = document.querySelectorAll('.images-container.horizontal img');
     
     images.forEach(img => {
         img.addEventListener('mouseenter', function() {
@@ -128,6 +128,7 @@ function createStars() {
 }
 
 window.addEventListener('load', createStars);
+
 
 
 
