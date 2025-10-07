@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Анимация появления элементов
     const animateElements = () => {
-        const elements = document.querySelectorAll('.image-block, .table-container');
+        const elements = document.querySelectorAll('.image-block, .table-container, .images-container.vertical img');
         elements.forEach((el, index) => {
             setTimeout(() => {
                 el.style.opacity = '1';
@@ -12,6 +12,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Инициализация анимаций
     setTimeout(animateElements, 500);
+
+    // Эффекты при наведении на картинки
+    const images = document.querySelectorAll('.images-container.vertical img');
+    
+    images.forEach(img => {
+        img.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+        
+        img.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.transition = 'transform 0.3s ease';
+        });
+    });
 
     // Эффекты при наведении на таблицу
     const tableRows = document.querySelectorAll('.bordered-table tbody tr');
@@ -27,49 +42,72 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.zIndex = '1';
         });
     });
-    document.addEventListener('DOMContentLoaded', function() {
+
     // Дополнительные эффекты для переливающегося заголовка
     const mainTitle = document.querySelector('.title h1');
     
-    // Периодическое изменение скорости анимации
-    setInterval(() => {
-        const speeds = [6, 8, 10, 12];
-        const randomSpeed = speeds[Math.floor(Math.random() * speeds.length)];
-        mainTitle.style.animationDuration = `${randomSpeed}s`;
-        
-        // Случайное усиление свечения
-        if (Math.random() > 0.5) {
-            mainTitle.style.textShadow = '0 0 20px currentColor';
-            setTimeout(() => {
-                mainTitle.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.3)';
-            }, 500);
-        }
-    }, 5000);
+    if (mainTitle) {
+        // Периодическое изменение скорости анимации
+        setInterval(() => {
+            const speeds = [6, 8, 10, 12];
+            const randomSpeed = speeds[Math.floor(Math.random() * speeds.length)];
+            mainTitle.style.animationDuration = `${randomSpeed}s`;
+            
+            // Случайное усиление свечения
+            if (Math.random() > 0.5) {
+                mainTitle.style.textShadow = '0 0 20px currentColor';
+                setTimeout(() => {
+                    mainTitle.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.3)';
+                }, 500);
+            }
+        }, 5000);
 
-    // Эффект при наведении на заголовок
-    mainTitle.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.05)';
-        this.style.animationDuration = '4s'; // Ускоряем при наведении
-    });
-    
-    mainTitle.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-        this.style.animationDuration = '8s'; // Возвращаем нормальную скорость
-    });
-});
+        // Эффект при наведении на заголовок
+        mainTitle.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.animationDuration = '4s'; // Ускоряем при наведении
+        });
+        
+        mainTitle.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.animationDuration = '8s'; // Возвращаем нормальную скорость
+        });
+    }
 
     // Параллакс эффект для фоновых элементов
     document.addEventListener('mousemove', (e) => {
         const moveX = (e.clientX - window.innerWidth / 2) / 50;
         const moveY = (e.clientY - window.innerHeight / 2) / 50;
         
-        document.querySelector('.circle').style.transform = 
-            `translate(${moveX}px, ${moveY}px)`;
-        document.querySelector('.circle-2').style.transform = 
-            `translate(${-moveX * 0.7}px, ${-moveY * 0.7}px)`;
+        const circle = document.querySelector('.circle');
+        const circle2 = document.querySelector('.circle-2');
+        
+        if (circle) {
+            circle.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        }
+        if (circle2) {
+            circle2.style.transform = `translate(${-moveX * 0.7}px, ${-moveY * 0.7}px)`;
+        }
+    });
+
+    // Проверка загрузки картинок
+    images.forEach((img, index) => {
+        if (!img.complete) {
+            img.addEventListener('load', function() {
+                console.log(`Картинка ${index + 1} загружена`);
+            });
+            
+            img.addEventListener('error', function() {
+                console.error(`Ошибка загрузки картинки ${index + 1}`);
+                // Заменяем на placeholder если картинка не загрузилась
+                this.src = 'https://via.placeholder.com/400x200/1a237e/4fc3f7?text=Space+' + (index + 1);
+                this.alt = 'Запасное космическое изображение ' + (index + 1);
+            });
+        }
     });
 
     console.log('Космическая карта объектов загружена! 🚀');
+    console.log('Найдено картинок:', images.length);
 });
 
 // Добавляем динамическое мерцание звезд
@@ -107,5 +145,4 @@ function createStars() {
 
 // Запускаем создание звезд после загрузки
 window.addEventListener('load', createStars);
-
 
