@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', function() {
     const animateElements = () => {
+         const elements = document.querySelectorAll('.image-block, .table-container, .images-container.horizontal img');
+        elements.forEach((el, index) => {
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+    };
        
     setTimeout(animateElements, 500);
 
@@ -121,6 +129,7 @@ function createStars() {
 }
 
 window.addEventListener('load', createStars);
+
 
 
 
