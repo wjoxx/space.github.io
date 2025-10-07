@@ -190,7 +190,7 @@ body::after {
   letter-spacing: 1px;
 }
 
-/* Горизонтальное расположение картинок - ИСПРАВЛЕННЫЙ */
+
 .images-container.vertical {
   display: flex;
   justify-content: center;
@@ -207,7 +207,6 @@ body::after {
   border: 1px solid rgba(79, 195, 247, 0.2);
 }
 
-/* Стили для картинок - ИСПРАВЛЕННЫЕ */
 .images-container.vertical img {
   border-radius: 8px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
@@ -229,12 +228,12 @@ body::after {
   transform: translateY(-10px) !important;
 }
 
-/* УДАЛЕНО: .images-container.vertical img.loaded */
 
-/* Стиль для горизонтальной прокрутки */
-.images-container.vertical::-webkit-scrollbar {
-  height: 8px;
-}
+
+//* Стиль для горизонтальной прокрутки */
+//.images-container.vertical::-webkit-scrollbar {
+ // height: 8px;
+//}
 
 .images-container.vertical::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
@@ -399,6 +398,7 @@ body::after {
     font-size: 1.8rem;
   }
 }
+
 
 
 
