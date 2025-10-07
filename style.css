@@ -240,7 +240,7 @@ body::after {
 }
 
 .images-container.horizontal::-webkit-scrollbar-thumb:hover {
-  background: rgba(79, 195, 247, 0.7);
+  //background: rgba(79, 195, 247, 0.7);
    background: #4fc3f7;
 }
 
@@ -393,6 +393,7 @@ body::after {
     font-size: 1.8rem;
   }
 }
+
 
 
 
