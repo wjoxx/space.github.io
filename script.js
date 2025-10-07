@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Анимация появления элементов
     const animateElements = () => {
         const elements = document.querySelectorAll('.image-block, .table-container, .images-container.vertical img');
         elements.forEach((el, index) => {
@@ -9,8 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, index * 200);
         });
     };
-
-    // Инициализация анимаций
     setTimeout(animateElements, 500);
 
     // Эффекты при наведении на картинки
@@ -28,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Эффекты при наведении на таблицу
+    // таблица
     const tableRows = document.querySelectorAll('.bordered-table tbody tr');
     
     tableRows.forEach(row => {
@@ -43,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Дополнительные эффекты для переливающегося заголовка
+    // Дополнительные эффекты для заголовка
     const mainTitle = document.querySelector('.title h1');
     
     if (mainTitle) {
@@ -63,8 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
 
         
-
-    // Параллакс эффект для фоновых элементов
     document.addEventListener('mousemove', (e) => {
         const moveX = (e.clientX - window.innerWidth / 2) / 50;
         const moveY = (e.clientY - window.innerHeight / 2) / 50;
@@ -79,8 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             circle2.style.transform = `translate(${-moveX * 0.7}px, ${-moveY * 0.7}px)`;
         }
     });
-
-    // Проверка загрузки картинок
+        
     images.forEach((img, index) => {
         if (!img.complete) {
             img.addEventListener('load', function() {
@@ -100,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Найдено картинок:', images.length);
 });
 
-// Добавляем динамическое мерцание звезд
+// мерцание звезд
 function createStars() {
     const starsContainer = document.createElement('div');
     starsContainer.className = 'dynamic-stars';
@@ -133,7 +127,7 @@ function createStars() {
     document.body.appendChild(starsContainer);
 }
 
-// Запускаем создание звезд после загрузки
 window.addEventListener('load', createStars);
+
 
 
