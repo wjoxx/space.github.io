@@ -108,3 +108,4 @@ function createStars() {
 // Запускаем создание звезд после загрузки
 window.addEventListener('load', createStars);
 
+
